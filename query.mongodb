@@ -1,0 +1,77 @@
+use("db_campus_alquiler");
+db.createCollection("Cliente");
+db.Cliente.insertMany([{
+    Nombre: "Juan", 
+    Apellido: "Perez", 
+    Anio:"12345678",
+    Direccion:"Calle 123", 
+    Telefono:"11111111", 
+    Email:"juan@example.com"},
+    {
+        Nombre: "Maria", 
+        Apellido: "Lopez", 
+        DNI:"87654321", 
+        Direccion:"Avenida 456", 
+        Telefono:"22222222", 
+        Email:"maria@example.com"},
+        {
+            Nombre: "Pedro",
+            Apellido: "Gonzalez", 
+            DNI:"56789012", 
+            Direccion:"Plaza 789", 
+            Telefono:"33333333", 
+            Email:"pedro@example.com"},
+            {
+                Nombre: "Laura",
+                Apellido: "Martinez", 
+                DNI:"09876543", 
+                Direccion:"Ruta 101", 
+                Telefono:"44444444", 
+                Email:"laura@example.com"},
+                {
+                    Nombre: "Carlos",
+                    Apellido: "Gomez", 
+                    DNI:"43210987", 
+                    Direccion:"Calle 987", 
+                    Telefono:"55555555", 
+                    Email:"carlos@example.com"}
+]);
+
+db.createCollection("Automovil");
+db.Automovil.insertMany([{
+    Marca: "Toyota", 
+    Modelo: "Corolla", 
+    Anio:2021,
+    Tipo:"Sedan", 
+    Capacidad:5, 
+    Precio_Diario:50.00},
+    {
+        Marca: "Honda", 
+        Modelo: "Civic", 
+        Anio:2020, 
+        Tipo:"Sedan", 
+        Capacidad:5, 
+        Precio_Diario:45.00},
+        {
+            Marca: "Ford",
+            Modelo: "Explorer", 
+            Anio:2019, 
+            Tipo:"SUV", 
+            Capacidad:7, 
+            Precio_Diario:60.00},
+            {
+                Marca: "Chevrolet",
+                Modelo: "Equinox", 
+                Anio:2022, 
+                Tipo:"SUV", 
+                Capacidad:5, 
+                Precio_Diario:55.00},
+                {
+                    Marca: "Nissan",
+                    Modelo: "Sentra", 
+                    Anio:2022, 
+                    Tipo:"Sedan", 
+                    Capacidad:4, 
+                    Precio_Diario:48.00}
+]);
+
