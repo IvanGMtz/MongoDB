@@ -75,3 +75,46 @@ db.Automovil.insertMany([{
                     Precio_Diario:48.00}
 ]);
 
+db.createCollection("Empleado");
+db.Empleado.insertMany([{
+    Nombre: "Ana",
+    Apellido: "Gomez", 
+    Anio:"123456789",
+    Direccion:"Calle 111", 
+    Telefono:"1111111111", 
+    Cargo:"Gerente"},
+    {
+        Nombre: "Luis", 
+        Apellido: "Rodriguez", 
+        DNI:"987654321", 
+        Direccion:"Avenida 222", 
+        Telefono:"2222222222", 
+        Cargo:"Asistente"},
+        {
+            Nombre: "Elena",
+            Apellido: "Fernandez", 
+            DNI:"Plaza 333", 
+            Direccion:"Plaza 789", 
+            Telefono:"3333333333", 
+            Cargo:"Vendedor"},
+            {
+                Nombre: "Mario",
+                Apellido: "Torres", 
+                DNI:"210987654", 
+                Direccion:"Ruta 444", 
+                Telefono:"4444444444", 
+                Cargo:"Recepcionista"},
+                {
+                    Nombre: "Carlos",
+                    Apellido: "Hernandez", 
+                    DNI:"543210987", 
+                    Direccion:"Carretera 555", 
+                    Telefono:"5555555555", 
+                    Cargo:"Chofer"}
+]);
+
+ 
+     
+    
+    
+    
