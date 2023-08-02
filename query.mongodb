@@ -1,6 +1,7 @@
 use("db_campus_alquiler");
+db.createCollection('Cliente');
 
-db.collection('Cliente').insertMany([
+db.Cliente.insertMany([
     { 
         _id: 1,
         Nombre: 'Juan',
@@ -42,8 +43,10 @@ db.collection('Cliente').insertMany([
         Telefono: '55555555', 
         Email: 'carlos@example.com'}
 ]);
- 
-db.collection('Automovil').insertMany([
+
+db.createCollection('Automovil');
+
+db.Automovil.insertMany([
     { 
         _id: 1, 
         Marca: 'Toyota', 
@@ -85,8 +88,10 @@ db.collection('Automovil').insertMany([
         Capacidad: 4, 
         Precio_Diario: 48.00}
 ]);
-  
-db.collection('Sucursal').insertMany([
+
+db.createCollection('Sucursal');
+
+db.Sucursal.insertMany([
     { 
         _id: 1, 
         Nombre: 'Sucursal A', 
@@ -114,8 +119,11 @@ db.collection('Sucursal').insertMany([
         Telefono: '5555555555'}
 ]);
   
-   // Colección: Contrato (fusion de Alquiler y Reserva)
-db.collection('Contrato').insertMany([
+// Colección: Contrato (fusion de Alquiler y Reserva)
+
+db.createCollection('Contrato');
+
+db.Contrato.insertMany([
     { 
         _id: 1, 
         ID_Cliente: 1, 
@@ -205,7 +213,10 @@ db.collection('Contrato').insertMany([
 ]);
 
 //Registro(Union de ambos registros)
-db.collection('Registro').insertMany([
+
+db.createCollection('Registro');
+
+db.Registro.insertMany([
     { 
         _id: 1, 
         ID_Contrato: 1, 
