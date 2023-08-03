@@ -433,3 +433,35 @@ db.getCollection("Contrato").aggregate([
         }
     }
 ]);
+
+// Reservas pendientes con datos Cliente y Automovil
+use("db_campus_alquiler");
+db.getCollection("Contrato").aggregate([
+    {
+        $match: {Estado:{$eq:"Pendiente"}}
+    },
+    {
+        $lookup: {
+          from: "Cliente",
+          localField: "ID_Cliente",
+          foreignField: "ID",
+          as: "Cliente"
+        }
+    },
+    {
+        $lookup: {
+            from: "Automovil",
+            localField: "ID_Automovil",
+            foreignField: "ID",
+            as: "Carro"
+          }
+    },
+    {
+        $project: {
+          _id:0,
+          ID_Cliente:0,
+          "Cliente._id":0,
+          "Carro._id":0
+        }
+    }
+]);
