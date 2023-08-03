@@ -374,3 +374,6 @@ db.getCollection("Contrato").aggregate([
     }
 ]);
 
+//Mostrar todos los clientes
+use("db_campus_alquiler");
+db.Cliente.find({},{_id:0})
