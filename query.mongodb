@@ -381,35 +381,48 @@ db.Cliente.find({},{_id:0})
 //Automoviles listos para alquilar
 
 use("db_campus_alquiler");
-db.getCollection("Contrato").aggregate([
-    {
-        $match: {Estado:{$eq:"Disponible"}}
+db.getCollection("Sucursal").aggregate([
+    { _id: 1, 
+        Nombre: 'Sucursal A', 
+        Direccion: 'Calle Principal 123', 
+        Telefono: '1111111111', 
+        AutomovilesDisponibles: [
+        { ID_Automovil: 1, Cantidad_Disponible: 3 }
+      ]
     },
-    {
-        $lookup: {
-          from: "Automovil",
-          localField: "ID_Automovil",
-          foreignField: "ID",
-          as: "Carro"
-        }
-    }, 
-    {
-        $unwind: '$Carro'
+    { _id: 2, 
+        Nombre: 'Sucursal B', 
+        Direccion: 'Avenida Central 456', 
+        Telefono: '2222222222', 
+        AutomovilesDisponibles: [
+        { ID_Automovil: 2, Cantidad_Disponible: 5 }
+      ]
     },
-    {
-        $group: {
-          _id: "$ID",
-          Carro: {
-            $push: "$Carro"
-          }
-        }
+    { _id: 3, 
+        Nombre: 'Sucursal C', 
+        Direccion: 'Plaza Principal 789', 
+        Telefono: '3333333333', 
+        AutomovilesDisponibles: [
+        { ID_Automovil: 3, Cantidad_Disponible: 2 }
+      ]
     },
-    {
-        $project: {
-          "Carro._id":0
-        }
+    { _id: 4, 
+        Nombre: 'Sucursal D', 
+        Direccion: 'Ruta Secundaria 101', 
+        Telefono: '4444444444', 
+        AutomovilesDisponibles: [
+        { ID_Automovil: 4, Cantidad_Disponible: 4 }
+      ]
+    },
+    { _id: 5, 
+        Nombre: 'Sucursal E', 
+        Direccion: 'Carretera Principal 987', 
+        Telefono: '5555555555', 
+        AutomovilesDisponibles: [
+        { ID_Automovil: 5, Cantidad_Disponible: 1 }
+      ]
     }
-]);
+  ]);
 
 //Alquileres Activos
 use("db_campus_alquiler");
