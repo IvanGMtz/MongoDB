@@ -465,3 +465,11 @@ db.getCollection("Contrato").aggregate([
         }
     }
 ]);
+
+// Alquiler con ID especifico, escribir el ID especificado en "ID"
+use("db_campus_alquiler");
+db.Contrato.find({Tipo:"Alquiler", ID:2}, { _id:0 })
+
+//  Empleados de cargo VENDEDOR
+use("db_campus_alquiler");
+db.Empleado.find({Cargo:"Vendedor"}, { _id:0 })
