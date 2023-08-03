@@ -500,3 +500,11 @@ db.Contrato.find({Tipo:"Alquiler", ID:1}, { _id:0, Fecha_Inicio:0, Fecha_Fin:0, 
 // Listar los clientes con el DNI específico, escribir el DNI especificado en "DNI"
 use("db_campus_alquiler");
 db.Cliente.find({DNI:"12345678"},{_id:0})
+
+// Automóviles con una capacidad mayor a 5 personas.
+use("db_campus_alquiler");
+db.getCollection("Automovil").aggregate([
+    {
+        $match: {Capacidad:{$gt:5}}
+    }
+]);
