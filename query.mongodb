@@ -496,3 +496,7 @@ db.Sucursal.find({}, { _id:0, Direccion:0,  Telefono:0})
 //Obtener el costo total de un alquiler específico, escribir el ID especificado en "ID"
 use("db_campus_alquiler");
 db.Contrato.find({Tipo:"Alquiler", ID:1}, { _id:0, Fecha_Inicio:0, Fecha_Fin:0, Tipo:0, ID_Cliente:0, ID_Automovil:0 })
+
+// Listar los clientes con el DNI específico, escribir el DNI especificado en "DNI"
+use("db_campus_alquiler");
+db.Cliente.find({DNI:"12345678"},{_id:0})
