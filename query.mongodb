@@ -303,6 +303,45 @@ db.Registro.insertMany([
         Tipo_Registro: 'Devolucion'}
 ]);
 
+db.createCollection('Empleado');
+db.Empleado.insertMany([
+    { ID: 1, 
+        Nombre: 'Ana', 
+        Apellido: 'Gomez', 
+        DNI: '123456789', 
+        Direccion: 'Calle 111', 
+        Telefono: '1111111111', 
+        Cargo: 'Gerente' },
+    { ID: 2, 
+        Nombre: 'Luis', 
+        Apellido: 'Rodriguez', 
+        DNI: '987654321', 
+        Direccion: 'Avenida 222', 
+        Telefono: '2222222222', 
+        Cargo: 'Asistente' },
+    { ID: 3, 
+        Nombre: 'Elena', 
+        Apellido: 'Fernandez', 
+        DNI: '456789012', 
+        Direccion: 'Plaza 333', 
+        Telefono: '3333333333', 
+        Cargo: 'Vendedor' },
+    { ID: 4, 
+        Nombre: 'Mario', 
+        Apellido: 'Torres', 
+        DNI: '210987654', 
+        Direccion: 'Ruta 444', 
+        Telefono: '4444444444', 
+        Cargo: 'Recepcionista' },
+    { ID: 5, 
+        Nombre: 'Carlos', 
+        Apellido: 'Hernandez', 
+        DNI: '543210987', 
+        Direccion: 'Carretera 555', 
+        Telefono: '5555555555', 
+        Cargo: 'Chofer' }
+  ]);
+
 use("db_campus_alquiler");
 db.getCollection("Contrato").aggregate([
     {
@@ -335,102 +374,3 @@ db.getCollection("Contrato").aggregate([
     }
 ]);
 
-//Mostrar todos los clientes
-use("db_campus_alquiler");
-db.Cliente.find({},{_id:0})
-
-//Automoviles listos para alquilar
-
-use("db_campus_alquiler");
-db.getCollection("Contrato").aggregate([
-    {
-        $match: {Estado:{$eq:"Disponible"}}
-    },
-    {
-        $lookup: {
-          from: "Automovil",
-          localField: "ID_Automovil",
-          foreignField: "ID",
-          as: "Carro"
-        }
-    }, 
-    {
-        $unwind: '$Carro'
-    },
-    {
-        $group: {
-          _id: "$ID",
-          Carro: {
-            $push: "$Carro"
-          }
-        }
-    },
-    {
-        $project: {
-          "Carro._id":0
-        }
-    }
-]);
-
-//Alquileres Activos
-use("db_campus_alquiler");
-db.getCollection("Contrato").aggregate([
-    {
-        $match: {Estado:{$eq:"Activo"}}
-    },
-    {
-        $lookup: {
-          from: "Cliente",
-          localField: "ID_Cliente",
-          foreignField: "ID",
-          as: "Cliente"
-        }
-    },
-    {
-        $project: {
-          _id:0,
-          ID_Cliente:0,
-          "Cliente._id":0
-        }
-    }
-]);
-
-// Reservas pendientes con datos Cliente y Automovil
-use("db_campus_alquiler");
-db.getCollection("Contrato").aggregate([
-    {
-        $match: {Estado:{$eq:"Pendiente"}}
-    },
-    {
-        $lookup: {
-          from: "Cliente",
-          localField: "ID_Cliente",
-          foreignField: "ID",
-          as: "Cliente"
-        }
-    },
-    {
-        $lookup: {
-            from: "Automovil",
-            localField: "ID_Automovil",
-            foreignField: "ID",
-            as: "Carro"
-          }
-    },
-    {
-        $project: {
-          _id:0,
-          ID_Cliente:0,
-          "Cliente._id":0,
-          "Carro._id":0
-        }
-    }
-]);
-
-// Alquiler con ID especifico
-use("db_campus_alquiler");
-db.Contrato.find({Tipo:"Alquiler"}, { _id:0 })
-
-//  Empleados de cargo VENDEDOR
-use("db_campus_alquiler");
-db.Empleado.find({Cargo:"Vendedor"}, { _id:0 })
