@@ -508,3 +508,7 @@ db.getCollection("Automovil").aggregate([
         $match: {Capacidad:{$gt:5}}
     }
 ]);
+
+//Obtener los detalles del alquiler que tiene fecha de inicio en '2023-07-05'. 
+use("db_campus_alquiler");
+db.Contrato.find({Tipo:"Alquiler", Fecha_Inicio:ISODate('2023-07-05')}, { _id:0 })
