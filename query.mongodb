@@ -377,3 +377,36 @@ db.getCollection("Contrato").aggregate([
 //Mostrar todos los clientes
 use("db_campus_alquiler");
 db.Cliente.find({},{_id:0})
+
+//Automoviles listos para alquilar
+
+use("db_campus_alquiler");
+db.getCollection("Contrato").aggregate([
+    {
+        $match: {Estado:{$eq:"Disponible"}}
+    },
+    {
+        $lookup: {
+          from: "Automovil",
+          localField: "ID_Automovil",
+          foreignField: "ID",
+          as: "Carro"
+        }
+    }, 
+    {
+        $unwind: '$Carro'
+    },
+    {
+        $group: {
+          _id: "$ID",
+          Carro: {
+            $push: "$Carro"
+          }
+        }
+    },
+    {
+        $project: {
+          "Carro._id":0
+        }
+    }
+]);
