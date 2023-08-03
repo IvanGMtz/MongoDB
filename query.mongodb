@@ -512,3 +512,7 @@ db.getCollection("Automovil").aggregate([
 //Obtener los detalles del alquiler que tiene fecha de inicio en '2023-07-05'. 
 use("db_campus_alquiler");
 db.Contrato.find({Tipo:"Alquiler", Fecha_Inicio:ISODate('2023-07-05')}, { _id:0 })
+
+// Reservas pendientes realizadas por un cliente específico, escribir el ID especificado en "ID_Cliente" 
+use("db_campus_alquiler");
+db.Contrato.find({Estado:"Pendiente", ID_Cliente:1}, { _id:0 })
