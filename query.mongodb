@@ -489,5 +489,6 @@ db.Contrato.find({Tipo:"Alquiler", ID:2}, { _id:0 })
 use("db_campus_alquiler");
 db.Empleado.find({Cargo:"Vendedor"}, { _id:0 })
 
-//  Empleados de cargo VENDEDOR
+//Cantidad total de automóviles disponibles en cada sucursal.
 use("db_campus_alquiler");
+db.Sucursal.find({}, { _id:0, Direccion:0,  Telefono:0})
